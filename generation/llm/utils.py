@@ -2,6 +2,7 @@ import os
 import time
 
 def export_models_to_markdown(models, path="docs/models/gemini_models.md"):
+    # Exports Gemini model details to a markdown file
     date = time.strftime("%Y-%m-%d")
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:

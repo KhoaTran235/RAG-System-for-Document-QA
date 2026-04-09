@@ -1,0 +1,14 @@
+llm:
+  routing:
+    rewrite: google_fast
+    qa: google_pro
+    summarize: google_fast
+
+  models:
+    google_fast:
+      provider: google
+      model_name: gemma-3-4b-it
+
+    google_pro:
+      provider: google
+      model_name: gemma-4-31b-it

@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 
-from llm.base import BaseLLM
+from generation.llm.base import BaseLLM
 from google import genai
 from google.genai import types
 
@@ -20,6 +20,7 @@ class GeminiClient(BaseLLM):
             model=self.model_name,
             contents={'text': f'{prompt}'},
             config=types.GenerateContentConfig(
+                system_instruction=kwargs.get('system_instruction', None),
                 temperature=kwargs.get('temperature', 0.7),
                 top_p=kwargs.get('top_p', 0.9),
                 top_k=kwargs.get('top_k', 40),
@@ -27,13 +28,14 @@ class GeminiClient(BaseLLM):
                 response_json_schema=kwargs.get('response_json_schema', None)
             )
         )
-        return response
+        return f"[Google:{self.model_name}] {response.text}"
     
     def generate_stream(self, prompt, **kwargs):
         response = self.client.models.generate_content_stream(
             model=self.model_name,
             contents={'text': f'{prompt}'},
             config=types.GenerateContentConfig(
+                system_instruction=kwargs.get('system_instruction', None),
                 temperature=kwargs.get('temperature', 0.7),
                 top_p=kwargs.get('top_p', 0.9),
                 top_k=kwargs.get('top_k', 40),
