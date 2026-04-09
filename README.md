@@ -1,7 +1,7 @@
 # RAG-System-for-Document-QA
 query rewriting, summary memory + truncated chat history, structure-based chunking, hybrid retrieval.
 
-
+```
 rag_system/
 │
 ├── app/                        # Entry point (API layer)
@@ -69,3 +69,4 @@ rag_system/
 ├── tests/
 │
 └── requirements.txt
+```
