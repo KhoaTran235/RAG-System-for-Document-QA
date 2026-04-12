@@ -1,4 +1,4 @@
-from generation.llm.gemini_client import GeminiClient
+from generation.llm.clients.gemini_client import GeminiClient
 
 
 def create_llm(model_config):

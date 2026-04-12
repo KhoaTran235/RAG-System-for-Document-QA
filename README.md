@@ -35,10 +35,12 @@ rag_system/
 ├── generation/
 │   ├── llm/
 │   │   └── llm_client.py     # wrapper (OpenAI / local)
-│   ├── prompt/
-│   │   ├── qa_prompt.py
-│   │   └── rewrite_prompt.py
-│   └── generator.py
+│   └── prompt/
+│       ├── templates
+│       │   ├── rag.py
+│       │   ├── rewrite.py
+│       │   └── summary.py
+│       └── prompt_builder.py
 │
 ├── memory/
 │   ├── chat_history.py

@@ -25,10 +25,11 @@ class GeminiClient(BaseLLM):
                 top_p=kwargs.get('top_p', 0.9),
                 top_k=kwargs.get('top_k', 40),
                 max_output_tokens=kwargs.get('max_output_tokens', 2048),
+                response_mime_type=kwargs.get('response_mime_type', 'text/plain'),
                 response_json_schema=kwargs.get('response_json_schema', None)
             )
         )
-        return f"[Google:{self.model_name}] {response.text}"
+        return response
     
     def generate_stream(self, prompt, **kwargs):
         response = self.client.models.generate_content_stream(
@@ -62,7 +63,7 @@ if __name__ == "__main__":
     
     print(f"Token Count: {token_count}")
     print(f"Prompt: {prompt}")
-    print(f"Response: {response.text}")
+    print(f"Response: {response}")
 
     response_stream = client.generate_stream(prompt, temperature=1.0)
     print("\nStreaming response:")
