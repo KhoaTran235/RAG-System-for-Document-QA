@@ -27,7 +27,7 @@ if __name__ == "__main__":
     # Example usage
     from generation.llm.clients.gemini_client import GeminiClient
     from generation.prompt.prompt_builder import PromptBuilder
-    llm = GeminiClient(model_name="gemini-2.5-flash")
+    llm = GeminiClient(model_name="gemini-3.1-flash-lite-preview")
     prompt_builder = PromptBuilder()
     summarizer = Summarizer(llm=llm, prompt_builder=prompt_builder)
 
