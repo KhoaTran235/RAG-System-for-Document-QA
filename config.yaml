@@ -12,3 +12,6 @@ llm:
     google_pro:
       provider: google
       model_name: gemma-4-31b-it
+
+embedding:
+  model_name: gemini-embedding-2-preview

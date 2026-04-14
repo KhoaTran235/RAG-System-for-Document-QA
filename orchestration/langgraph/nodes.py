@@ -37,4 +37,10 @@ class Nodes:
         prompt = self.prompt_builder.build(query=query, documents=docs)
         answer = self.llm.generate(prompt)
 
+        # Enqueue summary job here if needed
+        # enqueue_summary_job({
+        #     "query": state["query"],
+        #     "answer": answer
+        # })
+
         return {"answer": answer}

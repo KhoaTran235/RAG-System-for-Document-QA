@@ -12,4 +12,4 @@ def create_llm(model_config):
     #     return LocalLLM(model_config["model_name"])
 
     else:
-        raise ValueError(f"Unknown provider: {provider}")
+        raise ValueError(f"Unknown LLM provider: {provider}")

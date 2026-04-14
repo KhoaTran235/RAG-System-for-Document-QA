@@ -1,6 +1,8 @@
 from pydantic import BaseModel
+from typing import Dict, Any
 
 class Chunk(BaseModel):
-    id: str
+    source: str
+    id: int
     content: str
-    metadata: dict
+    metadata: Dict[str, Any]

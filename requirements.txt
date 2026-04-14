@@ -1,4 +1,6 @@
 google-genai==1.71.0
 docling==2.85.0
 langchain-text-splitters==1.1.1
+chromadb==1.5.7
+rank-bm25==0.2.2
 langgraph==1.1.6

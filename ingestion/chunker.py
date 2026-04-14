@@ -1,4 +1,5 @@
 from typing import List
+from schemas.chunk import Chunk
 
 from langchain_text_splitters import (
     MarkdownHeaderTextSplitter,
@@ -28,16 +29,18 @@ class StructureChunker:
             chunk_overlap=chunk_overlap,
         )
 
-    def chunk(self, markdown_text: str) -> List[dict]:
+    def chunk(self, source: str, markdown_text: str) -> List[Chunk]:
         splits = self.header_splitter.split_text(markdown_text)
         # splits = self.text_splitter.split_documents(splits)
 
         # Format output
         results = []
-        for doc in splits:
-            results.append({
-                "content": doc.page_content,
-                "metadata": doc.metadata,
-            })
+        for i, doc in enumerate(splits):
+            results.append(Chunk(
+                source=source,
+                id=i,
+                content=doc.page_content,
+                metadata=doc.metadata
+            ))
 
         return results
