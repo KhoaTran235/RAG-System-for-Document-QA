@@ -47,8 +47,8 @@ def format_history(messages: List[Message], max_turns: int = 5) -> str:
 class PromptBuilder:
 
     # ---------- RAG ----------
+    @staticmethod
     def build_rag_prompt(
-        self,
         query: Message,
         context: str,
         chat_history: List[Message]
@@ -68,8 +68,8 @@ class PromptBuilder:
         ]
 
     # ---------- REWRITE ----------
+    @staticmethod
     def build_rewrite_prompt(
-        self,
         query: Message,
         chat_history: List[Message]
     ) -> List[Message]:
@@ -87,8 +87,8 @@ class PromptBuilder:
         ]
 
     # ---------- SUMMARY ----------
+    @staticmethod
     def build_summary_prompt(
-        self,
         chat_history: List[Message],
         prev_summary: Summary = None
     ) -> List[Message]:

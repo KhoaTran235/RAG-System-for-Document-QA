@@ -1,35 +1,34 @@
 from typing import List
-from generation.llm.base import BaseLLM
+from generation.llm.router import LLMRouter
 from generation.prompt.prompt_builder import PromptBuilder
 from schemas.message import Message
 from schemas.summary import Summary
 
 class Summarizer:
-    def __init__(self, llm: BaseLLM, prompt_builder: PromptBuilder):
+    def __init__(self, llm: LLMRouter):
         self.llm = llm
-        self.prompt_builder = prompt_builder
     
     def summarize(self, chat_history: List[Message], prev_summary: Summary):
         # Combine the chat history and previous summary into a single prompt
-        prompt = self.prompt_builder.build_summary_prompt(chat_history, prev_summary)
+        prompt = PromptBuilder.build_summary_prompt(chat_history, prev_summary)
         
         # Use the LLM to generate a summary
         response = self.llm.generate(
-            prompt,
+            task="summarize",
+            prompt=prompt,
             response_mime_type="application/json",
             response_json_schema=Summary.model_json_schema()
         )
-        new_chat_history = chat_history[:-4] if len(chat_history) > 4 else chat_history # Keep the last 4 messages for context
+        new_chat_history = chat_history[-4:] if len(chat_history) > 4 else chat_history # Keep the last 4 messages for context
         new_summary = Summary.model_validate_json(response.text)
         return new_summary, new_chat_history
     
 if __name__ == "__main__":
     # Example usage
     from generation.llm.clients.gemini_client import GeminiClient
-    from generation.prompt.prompt_builder import PromptBuilder
     llm = GeminiClient(model_name="gemini-3.1-flash-lite-preview")
     prompt_builder = PromptBuilder()
-    summarizer = Summarizer(llm=llm, prompt_builder=prompt_builder)
+    summarizer = Summarizer(llm=llm)
 
     chat_history = [
         Message(role="user", content="What is the capital of France?"),

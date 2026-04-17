@@ -1,17 +1,21 @@
 llm:
   routing:
-    rewrite: google_fast
-    qa: google_pro
-    summarize: google_fast
+    rewrite: google_rewrite
+    qa: google_qa
+    summarize: google_summarize
 
   models:
-    google_fast:
+    google_rewrite:
       provider: google
       model_name: gemma-3-4b-it
 
-    google_pro:
+    google_qa:
       provider: google
       model_name: gemma-4-31b-it
+
+    google_summarize:
+      provider: google
+      model_name: gemini-3.1-flash-lite-preview
 
 embedding:
   model_name: gemini-embedding-2-preview

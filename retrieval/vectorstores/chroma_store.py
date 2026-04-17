@@ -60,16 +60,16 @@ if __name__ == "__main__":
     # Add some documents
     chunks = [
         Chunk(id=1, content="This is the first document. The first document talks about the capital of France.", source="doc1", metadata={"author": "Alice"}),
-        Chunk(id=2, content="This is the second document. The second document talks about the population of Paris.", source="doc2", metadata={"author": "Bob"}),
-        Chunk(id=3, content="This is the third document. The third document talks about the Eiffel Tower.", source="doc3", metadata={"author": "Charlie"})
+        Chunk(id=2, content="This is the second document. The second document talks about the population of HoChiMinh City.", source="doc2", metadata={"author": "Bob"}),
+        Chunk(id=3, content="This is the third document. The third document talks about the capital of Vietnam.", source="doc3", metadata={"author": "Charlie"})
     ]
     chroma_store.add_documents(chunks)
-    print("Retrieved documents from chroma store by id:")
-    for chunk in chunks:
-        retrieved = chroma_store.collection.get(ids=[str(chunk.id)], include=["embeddings"])
-        print(retrieved)
+    # print("Retrieved documents from chroma store by id:")
+    # for chunk in chunks:
+    #     retrieved = chroma_store.collection.get(ids=[str(chunk.id)], include=["embeddings"])
+    #     print(retrieved)
 
-    # # Perform a similarity search
-    # query = "What is the first document about?"
-    # results = chroma_store.similarity_search(query, k=2)
-    # print(results)
+    # Perform a similarity search
+    query = "Tell me about cities of Vietnam?"
+    results = chroma_store.similarity_search(query, k=2)
+    print(results)
